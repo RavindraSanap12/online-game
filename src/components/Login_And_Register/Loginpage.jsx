@@ -4,8 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { FaPhone, FaArrowRight } from "react-icons/fa";
 import logonew from "../Login_And_Register/logonew.jpeg";
 import security from "../Login_And_Register/security.png";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { API_BASE_URL } from "../api";
 
 function LoginPageUser({ onLogin }) {
@@ -50,25 +49,23 @@ function LoginPageUser({ onLogin }) {
 
       // Store the token and user data in localStorage
       localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user)); // Assuming user data is returned
+      localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("userId", data.user.id); // Store user ID for later use
 
-      // If login is successful
       if (onLogin) {
-        onLogin(data); // Pass the response data to parent component if onLogin prop exists
+        onLogin(data);
       }
-      // navigate("/main-page"); // Navigate to dashboard
 
-      // Check if mobile number is 7777
       if (formData.mobileNo === "7777") {
-        navigate("/dashboard"); // Navigate to dashboard for admin
+        navigate("/dashboard");
       } else {
-        navigate("/main-page"); // Navigate to main page for other users
+        navigate("/main-page");
       }
     } catch (err) {
       setMessage(err.message || "An error occurred during login");
-      // Clear any existing token on failed login
       localStorage.removeItem("token");
       localStorage.removeItem("user");
+      localStorage.removeItem("userId");
     } finally {
       setLoading(false);
     }
@@ -81,13 +78,13 @@ function LoginPageUser({ onLogin }) {
     >
       <div className="container">
         <div className="row mb-0">
-          <div className="col-12 d-flex justify-content-center">
+          {/* <div className="col-12 d-flex justify-content-center">
             <div className="login_logo">
               <a href="#">
                 <img src={logonew} alt="logo" className="img-fluid" />
               </a>
             </div>
-          </div>
+          </div> */}
           <div className="py-2 text-center">
             <a href="#" className="ribbon">
               Enter Your Login Details
@@ -155,7 +152,7 @@ function LoginPageUser({ onLogin }) {
               </form>
 
               <div className="mt-4 text-center anyenquiry">
-                <Link to="/signup">
+                <Link to="/signup" className="text-decoration-none">
                   For Registration{" "}
                   <span>
                     <FaArrowRight />

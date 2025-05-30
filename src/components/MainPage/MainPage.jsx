@@ -227,7 +227,7 @@ const MainPage = () => {
   };
 
   const openWhatsApp = () => {
-    const phoneNumber = "+919202887071";
+    const phoneNumber = "+918087563201";
     const webUrl = "https://wa.me/" + phoneNumber;
 
     if (
@@ -455,7 +455,7 @@ const MainPage = () => {
             </div>
 
             <div className="width_70">
-              <div className="head-title">Mama777</div>
+              <div className="head-title">Satta247</div>
             </div>
 
             <div className="width_30">
@@ -482,7 +482,7 @@ const MainPage = () => {
         <div className="marqueee">
           <div className="pt-1 bg_color">
             <marquee behavior="scroll" direction="left">
-              <h2 className="wel-text">Welcome to Mama777</h2>
+              <h2 className="wel-text">Welcome to Satta247</h2>
             </marquee>
           </div>
         </div>
@@ -660,7 +660,7 @@ const MainPage = () => {
           <ul className="d-flex justify-content-around list-unstyled mb-0">
             <li className="col">
               <div className="text-center">
-                <a href="/history">
+                <a href="/bid-history">
                   <img
                     src={bookIcon}
                     alt="icon"
@@ -716,7 +716,7 @@ const MainPage = () => {
 
             <li className="col">
               <div className="text-center">
-                <a href="https://wa.me/+919202887071">
+                <a href="https://wa.me/+918087563201">
                   <i className="bi bi-whatsapp"></i>
                   <br />
                   <p>WhatsApp</p>

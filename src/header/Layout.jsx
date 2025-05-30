@@ -70,6 +70,7 @@ import DoublePatti from "../components/doublePatti/DoublePatti";
 import Spdptp from "../components/SpDpTp/SpDpTp";
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
+import BidHistory from "../components/BidHistory/BidHistory";
 
 function Layout() {
   const location = useLocation();
@@ -129,6 +130,7 @@ function Layout() {
 
       <Routes>
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/signup" element={<SignupPage />} />
 
         <Route path="/app-setting" element={<AppSetting />} />
         <Route path="/main-market" element={<MainMarket />} />
@@ -206,7 +208,6 @@ function Layout() {
         <Route path="/update-notice" element={<UpdateNotice />} />
         {/* <Route path="/" element={<Dashboard />} /> */}
 
-        <Route path="/signup" element={<SignupPage />} />
         <Route path="/main-page" element={<MainPage />} />
         <Route path="/addfunds" element={<AddFunds />} />
         <Route path="/history" element={<HistoryPage />} />
@@ -227,6 +228,7 @@ function Layout() {
         <Route path="/game/fullsangam" element={<FullSangam />} />
         <Route path="/game/DoublePatti" element={<DoublePatti />} />
         <Route path="/game/spdptp" element={<Spdptp />} />
+        <Route path="/bid-history" element={<BidHistory />} />
       </Routes>
     </div>
   );

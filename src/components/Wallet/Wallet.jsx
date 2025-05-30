@@ -76,7 +76,7 @@ const Wallet = () => {
                 <div className="col-xl-12 col-lg-12 col-md-12 col-12">
                   <hr className="my-1" />
                   <h6 className="text-center text-black">For Add Funds Related Query Call Or Whatsapp</h6>
-                  <p className="text-center m-0">+919202887071</p>
+                  <p className="text-center m-0">+918087563201</p>
                   <p className="text-center">How to add funds? <a href="#">Click Here</a></p>
                   <hr className="my-1" />
                   <h6 className="text-center">Payment Add kerne ke 5 minutes ke andar apke wallet me points add hojayenge. So don't worry wait kariye.</h6>

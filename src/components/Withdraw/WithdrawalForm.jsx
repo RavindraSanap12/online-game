@@ -217,7 +217,7 @@ const WithdrawalForm = () => {
           <h6 className="text-center text-danger">
             For Withdrawal Related Query Call Or Whatsapp
           </h6>
-          <p className="text-center m-0">+919202887071</p>
+          <p className="text-center m-0">+918087563201</p>
           <hr />
           <h6 className="text-center">
             Withdrawal requests processed between 12:00 to 16:00 daily

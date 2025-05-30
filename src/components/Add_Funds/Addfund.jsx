@@ -215,7 +215,7 @@ const AddFunds = () => {
                 <h6 className="text-center text-black">
                   For Add Funds Related Query Call Or Whatsapp
                 </h6>
-                <p className="text-center m-0">+919202887071</p>
+                <p className="text-center m-0">+918087563201</p>
                 <p className="text-center">
                   How to add funds? <a href="#">Click Here</a>
                 </p>

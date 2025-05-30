@@ -58,13 +58,13 @@ function SignupPage() {
     >
       <div className="container">
         <div className="row mb-0">
-          <div className="col-12 d-flex justify-content-center">
+          {/* <div className="col-12 d-flex justify-content-center">
             <div className="login_logo">
               <a href="#">
                 <img src={logonew} alt="logo" className="img-fluid" />
               </a>
             </div>
-          </div>
+          </div> */}
           <div className="py-2 text-center">
             <a href="#" className="ribbon">
               Create Your Account
