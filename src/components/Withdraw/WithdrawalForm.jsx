@@ -205,15 +205,15 @@ const WithdrawalForm = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="shadow p-4 rounded-4 mb-3">
-          <div className="text-center mb-3">
+          {/* <div className="text-center mb-3">
             <img
               src={logonew}
               alt="logo"
               className="rounded-3 mx-auto d-table"
             />
-          </div>
+          </div> */}
 
-          <hr />
+          {/* <hr /> */}
           <h6 className="text-center text-danger">
             For Withdrawal Related Query Call Or Whatsapp
           </h6>

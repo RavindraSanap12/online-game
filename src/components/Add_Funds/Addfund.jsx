@@ -202,13 +202,13 @@ const AddFunds = () => {
                 </div>
               </div>
 
-              <div className="text-center col-12">
+              {/* <div className="text-center col-12">
                 <img
                   src={logonew}
                   alt="logo"
                   className="rounded-3 mx-auto d-table"
                 />
-              </div>
+              </div> */}
 
               <div className="col-12">
                 <hr className="my-1" />
