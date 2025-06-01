@@ -443,13 +443,27 @@ const MainPage = () => {
       </div>
 
       {/* Header */}
-      <header className="headermain fixed">
-        <div className="container">
+      {/* Header */}
+      <header
+        className="headermain fixed"
+        style={{
+          width: "100%",
+          padding: "-2px",
+          marginLeft: "-20px",
+          marginRight: "-20px",
+        }}
+      >
+        <div className="container header-container" style={{ width: "100%" }}>
           <div className="row align-items-center">
             <div className="width_30 ps-3">
               <div className="head-left">
                 <div className="menu" onClick={toggleSidebar}>
-                  <img src={menuIcon} alt="menu-icon" className="list_button" />
+                  <img
+                    src={menuIcon}
+                    style={{ height: "25px" }}
+                    alt="menu-icon"
+                    className="list_button"
+                  />
                 </div>
               </div>
             </div>
@@ -476,7 +490,6 @@ const MainPage = () => {
           </div>
         </div>
       </header>
-
       {/* Marquee Section */}
       <div className="fixed-top bg-white" style={{ zIndex: 2 }}>
         <div className="marqueee">

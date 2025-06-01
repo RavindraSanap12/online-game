@@ -28,7 +28,6 @@
   transition: all 0.2s ease;
 }
 
-
 .banner_button:hover {
   background-color: #e9ecef;
   transform: translateY(-2px);
@@ -38,4 +37,20 @@
   margin-bottom: 5px;
   width: 20px;
   height: 20px;
+}
+.headermain {
+  width: 100%;
+  background-color: #eeaf46;
+  padding: 10px 10px;
+  position: fixed;
+  display: flex;
+  flex-wrap: wrap;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.head-left {
+  display: flex;
+  align-items: center;
 }
