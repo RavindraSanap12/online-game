@@ -467,7 +467,6 @@ const MainPage = () => {
                 </div>
               </div>
             </div>
-
             <div className="width_70">
               <div className="head-title">Satta247</div>
             </div>
