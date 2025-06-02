@@ -43,7 +43,6 @@ const BidHistory = () => {
     validateAndGetUser();
   }, [navigate]);
 
-  // Fetch game data when userId is available
   useEffect(() => {
     if (!userId) return; // Don't fetch if no userId
 
