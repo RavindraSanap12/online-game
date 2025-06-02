@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { API_BASE_URL, API_BASE_URL2 } from "../api";
-
+import "./singleank.css";
 const SingleAnk = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -294,7 +294,7 @@ const SingleAnk = () => {
                   <input type="hidden" name="game_name" value={gameName} />
                   <input type="hidden" name="slug" value="single-ank" />
 
-                  <div className="row row-cols-xl-6 row-cols-lg-5 row-cols-md-5 row-cols-sm-5 row-cols-4 gy-3 px-3">
+                  <div className="singleank-header-filter">
                     <div className="col-xl-6 col-lg-6 col-md-6 col-6">
                       <input
                         type="text"
@@ -323,16 +323,18 @@ const SingleAnk = () => {
                         </select>
                       </div>
                     </div>
+                  </div>
 
-                    <div className="col-xl-12 col-lg-12 col-md-12 col-12">
-                      <h5 className="text-center text-black">
-                        Select Points for Betting
-                      </h5>
-                    </div>
+                  <div className="col-xl-12 col-lg-12 col-md-12 col-12">
+                    <h5 className="text-center text-black">
+                      Select Points for Betting
+                    </h5>
+                  </div>
 
+                  <div className="row row-cols-4 gy-2 px-3">
                     {pointOptions.map((option, index) => (
                       <div className="col" key={`point-${option.value}`}>
-                        <div className="pbtns">
+                        <div className="pbtn">
                           <input
                             className="form-check-input"
                             type="radio"
@@ -344,7 +346,7 @@ const SingleAnk = () => {
                           />
                           <label
                             htmlFor={`flexRadioDefault${index + 2}`}
-                            className={`btn btn-light bg-dark bg-opacity-10 shadow-sm px-4 py-2 w-100 points ${
+                            className={`btn btn-light shadow-sm px-4 py-2 w-100 points ${
                               selectedPoint === option.value ? "active" : ""
                             }`}
                           >
@@ -354,42 +356,51 @@ const SingleAnk = () => {
                       </div>
                     ))}
                   </div>
-                </div>
 
-                <div className="select-digit-wrap mt-4">
-                  <h5 className="text-center text-black mb-0">Select Digits</h5>
-                  <div className="col-xl-12 col-lg-12 col-md-12 col-12"></div>
-                  <h6 className="text-black fw-bold pt-3">Select All Digits</h6>
-                  <div className="scrrolar d-flex flex-column gap-4">
-                    <div className="  row row-cols-6 g2 px-2 ">
-                      {digits.map((digit) => (
-                        <div className="col mt-0" key={`digit-${digit}`}>
-                          <div className="digit-field text-center">
-                            {digit}
-                            <input
-                              type="text"
-                              className={`form-control text-center p-0 border-dark digits ${
-                                selectedDigits[digit] ? "selected" : ""
-                              }`}
-                              data-point={selectedPoint}
-                              data-id={digit}
-                              readOnly
-                              style={{ cursor: "pointer" }}
-                              value={selectedDigits[digit] || ""}
-                              onClick={() => handleDigitClick(digit)}
-                            />
-                            <div className="bid" id={`bid${digit}`}>
-                              {selectedDigits[digit] && (
-                                <input
-                                  type="hidden"
-                                  name={`bid[${digit}]`}
-                                  value={selectedDigits[digit]}
-                                />
-                              )}
+                  <div className="select-digit-wrap mt-4">
+                    <div className="sdigit">
+                      <h5 className="text-center text-black mb-0">
+                        Select Digits
+                      </h5>
+                    </div>
+
+                    <div className="col-xl-12 col-lg-12 col-md-12 col-12">
+                      <h6 className="text-black fw-bold pt-3">
+                        Select All Digits
+                      </h6>
+                    </div>
+
+                    <div className="scrrolar d-flex flex-column gap-4">
+                      <div className="row row-cols-6 g-2 px-2">
+                        {digits.map((digit) => (
+                          <div className="col" key={`digit-${digit}`}>
+                            <div className="digit-field text-center">
+                              {digit}
+                              <input
+                                type="text"
+                                className={`form-control text-center px-sm-4 py-3 border-dark digits ${
+                                  selectedDigits[digit] ? "active" : ""
+                                }`}
+                                data-point={selectedPoint}
+                                data-id={digit}
+                                readOnly
+                                style={{ cursor: "pointer" }}
+                                value={selectedDigits[digit] || ""}
+                                onClick={() => handleDigitClick(digit)}
+                              />
+                              <div className="" id={`bid${digit}`}>
+                                {selectedDigits[digit] && (
+                                  <input
+                                    type="hidden"
+                                    name={`bid[${digit}]`}
+                                    value={selectedDigits[digit]}
+                                  />
+                                )}
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
                   </div>
 

@@ -24,7 +24,8 @@ const BidHistory = () => {
         const storedUser = localStorage.getItem("user");
         if (storedUser) {
           const parsedUser = JSON.parse(storedUser);
-          if (parsedUser?.id) { // Check for id specifically
+          if (parsedUser?.id) {
+            // Check for id specifically
             setUserId(parsedUser.id);
           } else {
             throw new Error("User ID not found in user data");
@@ -52,7 +53,7 @@ const BidHistory = () => {
           `${API_BASE_URL2}/single-ank/user/${userId}`
         );
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          throw new Error("No data available");
         }
         const data = await response.json();
         setGameData(data);
@@ -80,43 +81,43 @@ const BidHistory = () => {
       {gameData.length === 0 ? (
         <p>No game records found</p>
       ) : (
-         <table className="bid-history-table">
-        <thead className="bid-history-thead">
-          <tr className="bid-history-header-row">
-            <th className="bid-history-th">Username</th>
-            {digits.map((digit) => (
-              <th key={digit} className="bid-history-th">
-                {digit}
-              </th>
-            ))}
-            <th className="bid-history-th">Type</th>
-            <th className="bid-history-th">Date</th>
-            <th className="bid-history-th">Total Bids</th>
-            <th className="bid-history-th">Total Amount</th>
-          </tr>
-        </thead>
-        <tbody className="bid-history-tbody">
-          {gameData.map((item, index) => (
-            <tr key={index} className="bid-history-row">
-              <td className="bid-history-td">{item.addUserDTO.name}</td>
-              <td className="bid-history-td">{item.zero || ""}</td>
-              <td className="bid-history-td">{item.one || ""}</td>
-              <td className="bid-history-td">{item.two || ""}</td>
-              <td className="bid-history-td">{item.three || ""}</td>
-              <td className="bid-history-td">{item.four || ""}</td>
-              <td className="bid-history-td">{item.five || ""}</td>
-              <td className="bid-history-td">{item.six || ""}</td>
-              <td className="bid-history-td">{item.seven || ""}</td>
-              <td className="bid-history-td">{item.eight || ""}</td>
-              <td className="bid-history-td">{item.nine || ""}</td>
-              <td className="bid-history-td">{item.type}</td>
-              <td className="bid-history-td">{item.date}</td>
-              <td className="bid-history-td">{item.totalBids}</td>
-              <td className="bid-history-td">{item.totalBidAmount}</td>
+        <table className="bid-history-table">
+          <thead className="bid-history-thead">
+            <tr className="bid-history-header-row">
+              <th className="bid-history-th">Username</th>
+              {digits.map((digit) => (
+                <th key={digit} className="bid-history-th">
+                  {digit}
+                </th>
+              ))}
+              <th className="bid-history-th">Type</th>
+              <th className="bid-history-th">Date</th>
+              <th className="bid-history-th">Total Bids</th>
+              <th className="bid-history-th">Total Amount</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="bid-history-tbody">
+            {gameData.map((item, index) => (
+              <tr key={index} className="bid-history-row">
+                <td className="bid-history-td">{item.addUserDTO.name}</td>
+                <td className="bid-history-td">{item.zero || ""}</td>
+                <td className="bid-history-td">{item.one || ""}</td>
+                <td className="bid-history-td">{item.two || ""}</td>
+                <td className="bid-history-td">{item.three || ""}</td>
+                <td className="bid-history-td">{item.four || ""}</td>
+                <td className="bid-history-td">{item.five || ""}</td>
+                <td className="bid-history-td">{item.six || ""}</td>
+                <td className="bid-history-td">{item.seven || ""}</td>
+                <td className="bid-history-td">{item.eight || ""}</td>
+                <td className="bid-history-td">{item.nine || ""}</td>
+                <td className="bid-history-td">{item.type}</td>
+                <td className="bid-history-td">{item.date}</td>
+                <td className="bid-history-td">{item.totalBids}</td>
+                <td className="bid-history-td">{item.totalBidAmount}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
     </div>
   );
