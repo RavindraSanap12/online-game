@@ -205,7 +205,6 @@ function Layout() {
         <Route path="/digit-amounts" element={<DigitAmountsPage />} />
         <Route path="/add-banner" element={<BannerForm />} />
         <Route path="/update-notice" element={<UpdateNotice />} />
-        {/* <Route path="/" element={<Dashboard />} /> */}
 
         <Route path="/main-page" element={<MainPage />} />
         <Route path="/addfunds" element={<AddFunds />} />

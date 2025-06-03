@@ -48,7 +48,6 @@ function App() {
   if (isLoading) {
     return <div className="loading-screen">Loading...</div>;
   }
-
   return (
     <BrowserRouter>
       {!isLoggedIn ? (
