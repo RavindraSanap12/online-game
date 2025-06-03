@@ -50,13 +50,9 @@ function App() {
   }
   return (
     <BrowserRouter>
-      {!isLoggedIn ? (
-        <LoginPageUser onLogin={handleLogin} />
-      ) : (
-        <Routes>
-          <Route path="/*" element={<Layout />} />
-        </Routes>
-      )}
+      <Routes>
+        <Route path="/*" element={<Layout />} />
+      </Routes>
     </BrowserRouter>
   );
 }

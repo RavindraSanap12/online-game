@@ -26,7 +26,7 @@ const AdminPointHistory = () => {
   const getAuthHeaders = () => {
     const token = localStorage.getItem("authToken");
     if (!token) {
-      navigate("/login");
+      navigate("/");
       return {};
     }
     return {
@@ -39,7 +39,7 @@ const AdminPointHistory = () => {
   const handleApiError = (error) => {
     if (error.response?.status === 401) {
       localStorage.removeItem("authToken");
-      navigate("/login");
+      navigate("/");
       throw new Error("Session expired. Please login again.");
     }
     throw new Error(error.response?.data?.message || "Request failed");
