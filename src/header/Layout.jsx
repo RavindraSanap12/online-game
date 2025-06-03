@@ -46,7 +46,6 @@ import NotificationForm from "../components/Notification/NotificationForm";
 import BannerForm from "../components/Banners/BannerForm";
 import UpdateNotice from "../components/Notification/UpdateNotice";
 import DigitAmountsPage from "../components/DigitAmountsPage";
-import SignupPage from "../components/Login_And_Register/signpage";
 import MainPage from "../components/MainPage/MainPage";
 import AddFunds from "../components/Add_Funds/Addfund";
 import HistoryPage from "../components/Big_History/bighistory";
@@ -71,6 +70,7 @@ import Spdptp from "../components/SpDpTp/SpDpTp";
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
 import BidHistory from "../components/BidHistory/BidHistory";
+import SignupPage from "../components/Login_And_Register/SignupPage";
 
 function Layout() {
   const location = useLocation();
@@ -130,7 +130,6 @@ function Layout() {
 
       <Routes>
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/signup" element={<SignupPage />} />
 
         <Route path="/app-setting" element={<AppSetting />} />
         <Route path="/main-market" element={<MainMarket />} />
@@ -213,6 +212,7 @@ function Layout() {
         <Route path="/history" element={<HistoryPage />} />
         <Route path="/game/dmmotor" element={<DMMotor />} />
         <Route path="/" element={<LoginPageUser />} />
+        <Route path="/signup" element={<SignupPage />} />
         <Route path="/game" element={<GamePage />} />
         <Route path="/withdraw" element={<WithdrawalForm />} />
         <Route path="/statement" element={<AccountStatement />} />

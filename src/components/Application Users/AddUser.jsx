@@ -75,7 +75,7 @@ const AddUser = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/users`, {
+      const response = await fetch(`${API_BASE_URL}/users/save`, {
         method: "POST",
         headers: getAuthHeaders(),
         body: JSON.stringify(formData),

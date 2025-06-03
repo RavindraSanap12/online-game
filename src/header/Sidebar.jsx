@@ -168,7 +168,7 @@ const Sidebar = ({ onLogout }) => {
                     Main Market
                   </NavLink>
                 </li>
-                <li>
+                {/* <li>
                   <NavLink
                     to="/delhi-market"
                     className="dropdown-item"
@@ -177,7 +177,7 @@ const Sidebar = ({ onLogout }) => {
                     <i className="bi bi-geo-alt me-2"></i>
                     Delhi Market
                   </NavLink>
-                </li>
+                </li> */}
                 <li>
                   <NavLink
                     to="/starline-market"
@@ -482,7 +482,7 @@ const Sidebar = ({ onLogout }) => {
                     Main Market
                   </NavLink>
                 </li>
-                <li>
+                {/* <li>
                   <NavLink
                     to="/delhi-result-upload"
                     className="dropdown-item"
@@ -492,7 +492,7 @@ const Sidebar = ({ onLogout }) => {
                     <i className="bi bi-geo-alt me-2"></i>
                     Delhi Market
                   </NavLink>
-                </li>
+                </li> */}
                 <li>
                   <NavLink
                     to="/starline-result-upload"
