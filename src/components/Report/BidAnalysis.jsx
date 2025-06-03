@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./BidAnalysis.css";
+import { API_BASE_URL2 } from "../api";
 
 const BidAnalysis = () => {
   // Get current date in YYYY-MM-DD format
   const getCurrentDate = () => {
     const today = new Date();
     const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0');
-    const day = String(today.getDate()).padStart(2, '0');
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   };
 
@@ -23,15 +24,15 @@ const BidAnalysis = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:8080/api/app/single-ank`);
+      const response = await fetch(`${API_BASE_URL2}/single-ank`);
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
       const result = await response.json();
       setAllData(result);
       filterDataByDate(result, date); // Filter initially by current date
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
       setAllData([]);
       setFilteredData([]);
       setTotal(0);
@@ -41,7 +42,7 @@ const BidAnalysis = () => {
   };
 
   const filterDataByDate = (data, selectedDate) => {
-    const filtered = data.filter(item => item.date === selectedDate);
+    const filtered = data.filter((item) => item.date === selectedDate);
     setFilteredData(filtered);
     setTotal(filtered.reduce((sum, item) => sum + item.totalBidAmount, 0));
   };
@@ -153,7 +154,7 @@ const BidAnalysis = () => {
             <tbody>
               {filteredData.map((item) => (
                 <tr key={item.id}>
-                  <td>{item.addUserDTO?.name || 'N/A'}</td>
+                  <td>{item.addUserDTO?.name || "N/A"}</td>
                   <td>{item.zero || ""}</td>
                   <td>{item.one || ""}</td>
                   <td>{item.two || ""}</td>
@@ -174,7 +175,9 @@ const BidAnalysis = () => {
           </table>
         </div>
       ) : (
-        <div className="bid-analysis-no-data">No data available for selected date</div>
+        <div className="bid-analysis-no-data">
+          No data available for selected date
+        </div>
       )}
     </div>
   );

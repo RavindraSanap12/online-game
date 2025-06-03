@@ -25,13 +25,9 @@ const AdminPointHistory = () => {
   // Get authentication headers with token
   const getAuthHeaders = () => {
     const token = localStorage.getItem("authToken");
-    if (!token) {
-      navigate("/");
-      return {};
-    }
     return {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      ...(token && { Authorization: `Bearer ${token}` }),
     };
   };
 
