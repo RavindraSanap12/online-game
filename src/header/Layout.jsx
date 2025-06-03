@@ -210,8 +210,8 @@ function Layout() {
         <Route path="/addfunds" element={<AddFunds />} />
         <Route path="/history" element={<HistoryPage />} />
         <Route path="/game/dmmotor" element={<DMMotor />} />
-        <Route path="/signup" element={<SignupPage />} />
         <Route path="/" element={<LoginPageUser />} />
+        <Route path="/signup" element={<SignupPage />} />
         <Route path="/game" element={<GamePage />} />
         <Route path="/withdraw" element={<WithdrawalForm />} />
         <Route path="/statement" element={<AccountStatement />} />
