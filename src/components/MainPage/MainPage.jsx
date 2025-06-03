@@ -182,7 +182,7 @@ const MainPage = () => {
       setError(err.message);
 
       if (err.message.includes("Forbidden") || err.message.includes("401")) {
-        window.location.href = "/login";
+        window.location.href = "/";
       }
     } finally {
       setLoading(false);

@@ -1,5 +1,6 @@
 body {
-  background-color: #fff;
+  background-color: rgb(60, 60, 60);
+  min-height: 100vh;
 }
 
 :root {

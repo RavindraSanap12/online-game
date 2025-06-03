@@ -1,83 +1,158 @@
 .bid-analysis-container {
-    background-color: #fff;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-    padding: 15px;
-    margin-left: 280px;
-    margin-top: 70px;
-    border-radius: 0;
-    box-shadow: none;
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  padding: 15px;
+  margin-left: 280px;
+  margin-top: 70px;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.bid-analysis-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.bid-analysis-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.bid-analysis-total {
+  font-size: 18px;
+  color: #000;
+}
+
+.bid-analysis-total-count {
+  color: red;
+  font-weight: bold;
+}
+
+.bid-analysis-filters {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.bid-analysis-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.bid-analysis-label {
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #333;
+}
+
+.bid-analysis-input,
+.bid-analysis-select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  width: 220px;
+}
+
+.bid-analysis-search-btn-wrapper {
+  margin-top: 24px;
+}
+
+.bid-analysis-search-btn {
+  padding: 10px 24px;
+  background-color: #28a745;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.bid-analysis-search-btn:hover {
+  background-color: #218838;
+}
+
+/* Table styles */
+.bid-analysis-table-container {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+.bid-analysis-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.bid-analysis-table th,
+.bid-analysis-table td {
+  border: 1px solid #d1d5db;
+  padding: 12px;
+  text-align: center;
+  font-size: 14px;
+  color: #374151;
+}
+
+.bid-analysis-table th {
+  background-color: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.bid-analysis-table tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+.bid-analysis-table tbody tr:hover {
+  background-color: #e0e7ff;
+}
+
+.bid-analysis-loading,
+.bid-analysis-no-data {
+  text-align: center;
+  padding: 20px;
+  font-size: 16px;
+  color: #666;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .bid-analysis-container {
+    margin-left: 20px;
+    margin-right: 20px;
   }
-  
-  .bid-analysis-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .bid-analysis-title {
-    font-size: 20px;
-    font-weight: bold;
-    color: #007bff;
-  }
-  
-  .bid-analysis-total {
-    font-size: 18px;
-    color: #000;
-    
-  }
-  
-  .bid-analysis-total-count {
-    color: red;
-    font-weight: bold;
-    
-  }
-  
+
   .bid-analysis-filters {
-    display: flex;
-    align-items: flex-end;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  
-  .bid-analysis-group {
-    display: flex;
     flex-direction: column;
+    align-items: stretch;
   }
-  
-  .bid-analysis-label {
-    margin-bottom: 6px;
-    font-weight: 500;
-    color: #333;
+
+  .bid-analysis-group {
+    width: 100%;
   }
-  
+
   .bid-analysis-input,
   .bid-analysis-select {
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 15px;
-    width: 220px;
+    width: 100%;
   }
-  
+
   .bid-analysis-search-btn-wrapper {
-    margin-top: 24px;
+    margin-top: 10px;
   }
-  
-  .bid-analysis-search-btn {
-    padding: 10px 24px;
-    background-color: #28a745;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+
+  .bid-analysis-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
   }
-  
-  .bid-analysis-search-btn:hover {
-    background-color: #218838;
-  }
-  
+}
