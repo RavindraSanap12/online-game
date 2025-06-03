@@ -157,13 +157,9 @@ const GameMarketSettings = () => {
   // Get authentication headers with token
   const getAuthHeaders = () => {
     const token = localStorage.getItem("authToken");
-    if (!token) {
-      navigate("/login");
-      return {};
-    }
     return {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      ...(token && { Authorization: `Bearer ${token}` }),
     };
   };
 
@@ -171,7 +167,7 @@ const GameMarketSettings = () => {
   const handleApiError = (error) => {
     if (error.response?.status === 401) {
       localStorage.removeItem("authToken");
-      navigate("/login");
+      navigate("/");
       throw new Error("Session expired. Please login again.");
     }
     throw new Error(error.response?.data?.message || "Request failed");

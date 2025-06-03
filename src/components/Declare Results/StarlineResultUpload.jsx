@@ -32,16 +32,12 @@ const StarlineResultUpload = () => {
   // Get authentication headers with token
   const getAuthHeaders = () => {
     const token = localStorage.getItem("authToken");
-    if (!token) {
-      navigate("/login");
-      return {};
-    }
     return {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      ...(token && { Authorization: `Bearer ${token}` }),
     };
   };
-
+  
   // Handle API errors consistently
   const handleApiError = (error) => {
     if (error.response?.status === 401) {
@@ -248,7 +244,9 @@ const StarlineResultUpload = () => {
         </div>
         <div className="starline-upload-panel-body">
           <form onSubmit={handleSubmit}>
-            {error && <div className="starline-upload-error-message">{error}</div>}
+            {error && (
+              <div className="starline-upload-error-message">{error}</div>
+            )}
             {saveSuccess && (
               <div className="starline-upload-success-message">
                 Result saved successfully!
@@ -366,7 +364,7 @@ const StarlineResultUpload = () => {
                 <label htmlFor="sendNotification">Send Notification</label>
               </div>
               <div className="starline-upload-form-group starline-upload-button-group">
-              <button
+                <button
                   type="button"
                   className="btn-btn-success"
                   onClick={() => setShowWinnerPopup(true)}
@@ -384,7 +382,8 @@ const StarlineResultUpload = () => {
                 >
                   {isSaving ? (
                     <>
-                      <span className="starline-upload-spinner"></span> Saving...
+                      <span className="starline-upload-spinner"></span>{" "}
+                      Saving...
                     </>
                   ) : (
                     "Save Result"
@@ -543,7 +542,9 @@ const StarlineResultUpload = () => {
                               <td>{winner.mobileNo}</td>
                               <td>{winner.gameName}</td>
                               <td>{winner.session}</td>
-                              <td>₹{winner.winningAmount?.toFixed(2) || "0.00"}</td>
+                              <td>
+                                ₹{winner.winningAmount?.toFixed(2) || "0.00"}
+                              </td>
                             </tr>
                           ))}
                         </tbody>

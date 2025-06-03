@@ -12,21 +12,19 @@ const Banners = () => {
   const [deletingId, setDeletingId] = useState(null);
   const navigate = useNavigate();
 
+  // Get authentication headers with token
   const getAuthHeaders = () => {
     const token = localStorage.getItem("authToken");
-    if (!token) {
-      navigate("/login");
-      return {};
-    }
     return {
-      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+      ...(token && { Authorization: `Bearer ${token}` }),
     };
   };
 
   const handleApiError = (error) => {
     if (error.response?.status === 401) {
       localStorage.removeItem("authToken");
-      navigate("/login");
+      navigate("/");
       throw new Error("Session expired. Please login again.");
     }
     throw new Error(error.message || "Request failed");
