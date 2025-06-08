@@ -83,7 +83,6 @@ const BidAnalysis = () => {
   const filterDataByDateAndUser = (data, selectedDate, userFilter) => {
     let filtered = data.filter((item) => item.date === selectedDate);
 
-    // Additional filtering for user if not "All Users"
     if (userFilter !== "All Users") {
       filtered = filtered.filter(
         (item) => item.addUserDTO?.name === userFilter
