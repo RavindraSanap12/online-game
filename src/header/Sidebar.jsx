@@ -165,7 +165,7 @@ const Sidebar = ({ onLogout }) => {
                     activeClassName="active"
                   >
                     <i className="bi bi-shop me-2"></i>
-                    Main Market
+                    Main Bazar
                   </NavLink>
                 </li>
                 {/* <li>
@@ -479,7 +479,7 @@ const Sidebar = ({ onLogout }) => {
                     onClick={createRipple}
                   >
                     <i className="bi bi-shop me-2"></i>
-                    Main Market
+                    Main Bazar
                   </NavLink>
                 </li>
                 {/* <li>
@@ -624,7 +624,7 @@ const Sidebar = ({ onLogout }) => {
                     onClick={createRipple}
                   >
                     <FaMinus className="me-2" />
-                    Main Market
+                    Main Bazar
                   </NavLink>
                 </li>
                 <li>

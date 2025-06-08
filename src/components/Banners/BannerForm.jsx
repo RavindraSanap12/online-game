@@ -16,7 +16,7 @@ const BannerForm = () => {
   const getAuthHeaders = () => {
     const token = localStorage.getItem("authToken");
     if (!token) {
-      navigate("/login");
+      navigate("/");
       return {};
     }
     return {
@@ -26,11 +26,6 @@ const BannerForm = () => {
 
   // Handle API errors consistently
   const handleApiError = (error) => {
-    if (error.response?.status === 401) {
-      localStorage.removeItem("authToken");
-      navigate("/login");
-      throw new Error("Session expired. Please login again.");
-    }
     throw new Error(error.message || "Request failed");
   };
 

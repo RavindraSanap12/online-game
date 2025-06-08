@@ -63,9 +63,6 @@ function LoginPageUser({ onLogin }) {
       }
     } catch (err) {
       setMessage(err.message || "An error occurred during login");
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      localStorage.removeItem("userId");
     } finally {
       setLoading(false);
     }

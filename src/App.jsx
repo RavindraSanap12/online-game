@@ -19,8 +19,6 @@ function App() {
           setIsLoggedIn(true);
         } catch (error) {
           console.error("Error parsing user data:", error);
-          localStorage.removeItem("authToken");
-          localStorage.removeItem("user");
         }
       }
       setIsLoading(false);

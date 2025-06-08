@@ -18,7 +18,7 @@ const games = [
   { title: "Single Patti", image: g3, link: "singlepatti" },
   { title: "Double Patti", image: g4, link: "DoublePatti" },
   { title: "Triple Patti", image: g5, link: "triplepatti" },
-  { title: "Half Sangam", image: g6, link: "halfsangam" },
+  // { title: "Half Sangam", image: g6, link: "halfsangam" },
   { title: "Full Sangam", image: g7, link: "fullsangam" },
   { title: "SP DP TP", image: g8, link: "spdptp" },
   { title: "SP Motor", image: g12, link: "spmotor" },

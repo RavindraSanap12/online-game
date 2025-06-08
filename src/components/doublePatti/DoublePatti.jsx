@@ -88,13 +88,6 @@ const DoublePatti = () => {
         },
       });
 
-      if (response.status === 401 || response.status === 403) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        navigate("/");
-        return;
-      }
-
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -223,13 +216,6 @@ const DoublePatti = () => {
         },
         body: JSON.stringify(requestBody),
       });
-
-      if (response.status === 401 || response.status === 403) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        navigate("/");
-        return;
-      }
 
       if (!response.ok) {
         const errorData = await response.json();

@@ -9,7 +9,7 @@ const MainMarket = () => {
 
   // Form state
   const [formData, setFormData] = useState({
-    marketType: "Main Market",
+    marketType: "Main Bazar",
     title: "",
     openTime: "",
     closeTime: "",
@@ -45,12 +45,6 @@ const MainMarket = () => {
 
   // Handle API errors consistently
   const handleApiError = (error) => {
-    if (error.response?.status === 401) {
-      localStorage.removeItem("authToken");
-      localStorage.removeItem("user");
-      navigate("/login");
-      throw new Error("Session expired. Please login again.");
-    }
     throw new Error(error.response?.data?.message || "Request failed");
   };
 
@@ -180,7 +174,7 @@ const MainMarket = () => {
     const closeTime = formatTimeForInput(market.rawData.closeTime);
 
     setFormData({
-      marketType: market.rawData.marketType || "Main Market",
+      marketType: market.rawData.marketType || "Main Bazar",
       title: market.rawData.title,
       openTime: openTime,
       closeTime: closeTime,
@@ -269,7 +263,7 @@ const MainMarket = () => {
   const handleCancel = () => {
     setEditingId(null);
     setFormData({
-      marketType: "Main Market",
+      marketType: "Main Bazar",
       title: "",
       openTime: "",
       closeTime: "",
@@ -295,7 +289,7 @@ const MainMarket = () => {
         {/* Create/Edit Market Panel */}
         <div className="panel create-panel">
           <div className="panel-header">
-            {editingId ? "Edit Main Market" : "Create Main Market"}
+            {editingId ? "Edit Main Bazar" : "Create Main Bazar"}
           </div>
           <div className="panel-content">
             {/* First row */}
@@ -456,7 +450,7 @@ const MainMarket = () => {
 
         {/* Market List Panel */}
         <div className="panel list-panel">
-          <div className="panel-header">Main Market List</div>
+          <div className="panel-header">Main Bazar List</div>
           <div className="table-container">
             {loading ? (
               <div className="loading-message">Loading market data...</div>

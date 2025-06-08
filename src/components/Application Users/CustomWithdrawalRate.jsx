@@ -186,7 +186,7 @@ const CustomWithdrawalRate = () => {
       {/* Main Market Rates Panel */}
       <div className="rate-panel market-rates-panel">
         <div className="panel-header">
-          <span>Main Market Rates</span>
+          <span>Main Bazar Rates</span>
         </div>
         <div className="panel-content">
           <div className="rates-tables-container">
@@ -259,6 +259,7 @@ const CustomWithdrawalRate = () => {
                   <tr>
                     <th>Game Type</th>
                     <th>Game Rate</th>
+                    
                     <th>Min Bid</th>
                     <th>Max Bid</th>
                   </tr>

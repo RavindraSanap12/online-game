@@ -12,7 +12,6 @@ function Navbar() {
         setUserData(JSON.parse(storedUser));
       } catch (error) {
         console.error("Error parsing user data:", error);
-        localStorage.removeItem("user");
       }
     }
   }, []);

@@ -32,13 +32,6 @@ const RunningGamesList = () => {
   const handleResponse = async (response) => {
     const data = await response.json();
     if (!response.ok) {
-      if (response.status === 401) {
-        // Token expired or invalid
-        localStorage.removeItem("authToken");
-        localStorage.removeItem("user");
-        navigate("/login");
-        throw new Error("Session expired. Please login again.");
-      }
       throw new Error(data.message || "Request failed");
     }
     return data;

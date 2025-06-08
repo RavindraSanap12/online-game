@@ -3,7 +3,7 @@ import { Modal, Button, Table } from "react-bootstrap";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { API_BASE_URL, API_BASE_URL2 } from "../api";
-import './triplepatti.css'
+import "./triplepatti.css";
 const TripplePatti = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -96,13 +96,6 @@ const TripplePatti = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-
-      if (response.status === 401 || response.status === 403) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        navigate("/");
-        return;
-      }
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -275,13 +268,6 @@ const TripplePatti = () => {
         body: JSON.stringify(requestBody),
       });
 
-      if (response.status === 401 || response.status === 403) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        navigate("/");
-        return;
-      }
-
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || "Failed to submit bid");
@@ -346,8 +332,8 @@ const TripplePatti = () => {
                           <Link to="/game" state={location.state}>
                             <span className="ri-arrow-left-line me-3"></span>
                           </Link>
-                           Triple Patti | Status: {status} |
-                          Open: {openTime} - Close: {closeTime}
+                          Triple Patti | Status: {status} | Open: {openTime} -
+                          Close: {closeTime}
                         </h5>
                         <div className="wallet px-3 py-1 rounded-2 bg-white bg-opacity-50">
                           <i className="ri-wallet-3-line fs-6"></i>
@@ -374,7 +360,7 @@ const TripplePatti = () => {
                         value={bidDate}
                       />
                     </div>
-                   <div className="col-xl-6 col-lg-6 col-md-6 col-6">
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-6">
                       <div className="select-field ms-sm-auto d-sm-table">
                         <select
                           name="session"
@@ -388,13 +374,13 @@ const TripplePatti = () => {
                         </select>
                       </div>
                     </div>
- </div>
-                    <div className="col-xl-12 col-lg-12 col-md-12 col-12">
-                      <h5 className="text-center text-black">
-                        Select Points for Betting
-                      </h5>
-                    </div>
-                    <div className="row row-cols-4 gy-2 px-3">
+                  </div>
+                  <div className="col-xl-12 col-lg-12 col-md-12 col-12">
+                    <h5 className="text-center text-black">
+                      Select Points for Betting
+                    </h5>
+                  </div>
+                  <div className="row row-cols-4 gy-2 px-3">
                     {pointOptions.map((option, index) => (
                       <div className="col" key={index}>
                         <div className="pbtn">
@@ -418,7 +404,7 @@ const TripplePatti = () => {
                         </div>
                       </div>
                     ))}
-                 </div>
+                  </div>
                 </div>
 
                 <div className="select-digit-wrap mt-4">
@@ -428,46 +414,43 @@ const TripplePatti = () => {
                     </h5>
                   </div>
                   <div className="scrrolar d-flex flex-column gap-4">
-                    
-                      <div className="col-xl-12 col-lg-12 col-md-12 col-12">
-                        <h6 className="text-black fw-bold pt-3">
-                          Select All Digits
-                        </h6>
-                      </div>
-                       <div className="scrrolar d-flex flex-column gap-4">
-                    <div className="  row row-cols-6 g2 px-2 ">
-                      
-                      {digits.map((digit, index) => (
-                        <div className="col" key={index}>
-                          <div className="digit-field text-center">
-                            {digit}
-                            <input
-                              type="text"
-                              className={`form-control text-center px-sm-4 py-3 border-dark digits ${
-                                selectedDigits[digit] ? "selected" : ""
-                              }`}
-                              data-point={selectedPoint}
-                              data-id={digit}
-                              readOnly
-                              style={{ cursor: "pointer" }}
-                              value={selectedDigits[digit] || ""}
-                              onClick={() => handleDigitClick(digit)}
-                            />
-                            <div className="" id={`bid${digit}`}>
-                              {selectedDigits[digit] && (
-                                <input
-                                  type="hidden"
-                                  name={`bid[${digit}]`}
-                                  value={selectedDigits[digit]}
-                                />
-                              )}
+                    <div className="col-xl-12 col-lg-12 col-md-12 col-12">
+                      <h6 className="text-black fw-bold pt-3">
+                        Select All Digits
+                      </h6>
+                    </div>
+                    <div className="scrrolar d-flex flex-column gap-4">
+                      <div className="  row row-cols-6 g2 px-2 ">
+                        {digits.map((digit, index) => (
+                          <div className="col" key={index}>
+                            <div className="digit-field text-center">
+                              {digit}
+                              <input
+                                type="text"
+                                className={`form-control text-center px-sm-4 py-3 border-dark digits ${
+                                  selectedDigits[digit] ? "selected" : ""
+                                }`}
+                                data-point={selectedPoint}
+                                data-id={digit}
+                                readOnly
+                                style={{ cursor: "pointer" }}
+                                value={selectedDigits[digit] || ""}
+                                onClick={() => handleDigitClick(digit)}
+                              />
+                              <div className="" id={`bid${digit}`}>
+                                {selectedDigits[digit] && (
+                                  <input
+                                    type="hidden"
+                                    name={`bid[${digit}]`}
+                                    value={selectedDigits[digit]}
+                                  />
+                                )}
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
                       </div>
-                      </div>
-                 
+                    </div>
                   </div>
 
                   <div className="bibtn d-flex justify-content-between align-items-center py-2 fixed-bottom px-4 bg-light">
@@ -591,7 +574,3 @@ const TripplePatti = () => {
 };
 
 export default TripplePatti;
-
-
-
-

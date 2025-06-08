@@ -95,12 +95,6 @@ const UpdateUser = () => {
     } catch (err) {
       setError(err.message);
       setIsLoading(false);
-
-      // Handle unauthorized (401) errors
-      if (err.message.includes("Unauthorized") || err.message.includes("401")) {
-        localStorage.removeItem("authToken");
-        navigate("/login");
-      }
     }
   };
 

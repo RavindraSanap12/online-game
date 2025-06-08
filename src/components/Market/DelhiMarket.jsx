@@ -44,12 +44,6 @@ const DelhiMarket = () => {
 
   // Handle API errors consistently
   const handleApiError = (error) => {
-    if (error.response?.status === 401) {
-      localStorage.removeItem("authToken");
-      localStorage.removeItem("user");
-      navigate("/login");
-      throw new Error("Session expired. Please login again.");
-    }
     throw new Error(error.response?.data?.message || "Request failed");
   };
 
@@ -59,7 +53,7 @@ const DelhiMarket = () => {
       try {
         setLoading(true);
         setError(null);
-        
+
         const response = await axios.get(`${API_BASE_URL}/delhi-markets`, {
           headers: getAuthHeaders(),
         });
@@ -247,7 +241,7 @@ const DelhiMarket = () => {
       const marketResponse = await axios.get(`${API_BASE_URL}/delhi-markets`, {
         headers: getAuthHeaders(),
       });
-      
+
       const transformedData = marketResponse.data.map((market, index) => ({
         marketId: market.marketId || index + 1,
         title: market.title,
@@ -256,13 +250,15 @@ const DelhiMarket = () => {
         status: market.status || false,
         rawData: market,
       }));
-      
+
       setMarketList(transformedData);
       alert(`Market ${editingId ? "updated" : "created"} successfully!`);
       handleCancel();
     } catch (error) {
       handleApiError(error);
-      alert(`Failed to ${editingId ? "update" : "create"} market. Please try again.`);
+      alert(
+        `Failed to ${editingId ? "update" : "create"} market. Please try again.`
+      );
     }
   };
 

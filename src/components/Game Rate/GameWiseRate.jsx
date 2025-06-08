@@ -16,7 +16,7 @@ const markets = ["Lucky Draw", "Time bazar", "Star klyan", "Sridevi",];
 const GameWiseRate = () => {
   return (
     <div className="game-rate-list">
-      <div className="game-rate-list-header">Main Market</div>
+      <div className="game-rate-list-header">Main Bazar</div>
       <div className="game-rate-list-content">
         {markets.map((market, idx) => (
           <div className="game-rate-list-section" key={idx}>

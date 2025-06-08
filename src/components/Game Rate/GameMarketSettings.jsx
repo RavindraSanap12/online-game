@@ -12,7 +12,7 @@ const GameMarketSettings = () => {
   // Default market data structure
   const defaultMarkets = [
     {
-      name: "Main Market",
+      name: "Main Bazar",
       gameConfigs: [
         {
           gameType: "Single Digits",
@@ -165,11 +165,6 @@ const GameMarketSettings = () => {
 
   // Handle API errors consistently
   const handleApiError = (error) => {
-    if (error.response?.status === 401) {
-      localStorage.removeItem("authToken");
-      navigate("/");
-      throw new Error("Session expired. Please login again.");
-    }
     throw new Error(error.response?.data?.message || "Request failed");
   };
 

@@ -299,13 +299,6 @@ const FullSangam = () => {
         },
       });
 
-      if (response.status === 401 || response.status === 403) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        navigate("/");
-        return;
-      }
-
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -389,13 +382,6 @@ const FullSangam = () => {
       if (response.status === 200 || response.status === 201) {
         console.log("Data Saved Successfully");
         console.log(JSON.stringify(requestBody, null, 2));
-      }
-
-      if (response.status === 401 || response.status === 403) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        navigate("/");
-        return;
       }
 
       if (!response.ok) {

@@ -43,13 +43,13 @@ const CreateMainMarket = () => {
   return (
     <div className="create-main-market-container">
       <div className="create-main-market-form">
-        <div className="create-main-market-header">Create Main Market</div>
+        <div className="create-main-market-header">Create Main Bazar</div>
 
         <div className="create-main-market-inputs">
           <div className="create-main-market-row">
             <div className="create-main-market-field">
               <label>Market Type *</label>
-              <input type="text" value="Main Market" disabled />
+              <input type="text" value="Main Bazar" disabled />
             </div>
             <div className="create-main-market-field">
               <label>Title *</label>
@@ -137,7 +137,7 @@ const CreateMainMarket = () => {
       </div>
 
       <div className="create-main-market-list">
-        <div className="create-main-market-list-header">Main Market List</div>
+        <div className="create-main-market-list-header">Main Bazar List</div>
         <table className="create-main-market-table">
           <thead>
             <tr>

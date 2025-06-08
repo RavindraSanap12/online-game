@@ -38,11 +38,6 @@ const MainResultUpload = () => {
 
   // Handle API errors consistently
   const handleApiError = (error) => {
-    if (error.response?.status === 401) {
-      localStorage.removeItem("authToken");
-      navigate("/");
-      throw new Error("Session expired. Please login again.");
-    }
     throw new Error(error.response?.data?.message || "Request failed");
   };
 

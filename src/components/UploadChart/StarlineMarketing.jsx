@@ -14,7 +14,7 @@ const StarlineMarketing = () => {
 
   return (
     <div className="starline-marketing-container">
-      <div className="starline-marketing-header">Upload Main Market Data</div>
+      <div className="starline-marketing-header">Upload Main Bazar Data</div>
 
       <div className="starline-marketing-body">
         <div className="starline-marketing-group">

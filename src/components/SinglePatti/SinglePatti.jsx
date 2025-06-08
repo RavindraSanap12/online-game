@@ -203,7 +203,7 @@ const SinglePatti = () => {
   const validateToken = async () => {
     const token = localStorage.getItem("token");
     if (!token) {
-      navigate("/login");
+      navigate("/");
       return false;
     }
     return true;
@@ -218,7 +218,7 @@ const SinglePatti = () => {
       if (!userData?.id) {
         console.error("User ID not found");
         setWalletAmount(0);
-        navigate("/login");
+        navigate("/");
         return;
       }
 
@@ -230,13 +230,6 @@ const SinglePatti = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-
-      if (response.status === 401 || response.status === 403) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        navigate("/login");
-        return;
-      }
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -360,13 +353,6 @@ const SinglePatti = () => {
         },
         body: JSON.stringify(requestBody),
       });
-
-      if (response.status === 401 || response.status === 403) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        navigate("/login");
-        return;
-      }
 
       if (!response.ok) {
         const errorData = await response.json();

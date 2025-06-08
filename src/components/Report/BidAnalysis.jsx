@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./BidAnalysis.css";
-import { API_BASE_URL2 } from "../api";
+import { API_BASE_URL, API_BASE_URL2 } from "../api";
 
 const BidAnalysis = () => {
   // Get current date in YYYY-MM-DD format
@@ -13,24 +13,63 @@ const BidAnalysis = () => {
   };
 
   const [date, setDate] = useState(getCurrentDate());
-  const [marketType, setMarketType] = useState("Main Market");
-  const [game, setGame] = useState("Choose Game");
-  const [session, setSession] = useState("Choose Session");
+  const [marketType, setMarketType] = useState("Main Bazar");
+  const [game, setGame] = useState("Single Ank");
+  const [users, setUsers] = useState([]); // Store all users
+  const [selectedUser, setSelectedUser] = useState("All Users"); // Selected user filter
   const [allData, setAllData] = useState([]); // Store all fetched data
-  const [filteredData, setFilteredData] = useState([]); // Data filtered by date
+  const [filteredData, setFilteredData] = useState([]); // Data filtered by date and user
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
+
+  const getEndpoint = () => {
+    switch (game) {
+      case "Jodi":
+        return "jodis";
+      case "Single Patti":
+        return "single-patti";
+      case "Double Patti":
+        return "double-patti";
+      case "Triple Patti":
+        return "tripple-patti";
+      case "Sangam":
+        return "full-sangam";
+      case "SP DP TP":
+        return "spdptp";
+      case "SP Motor":
+        return "spmotor";
+      case "DP Motor":
+        return "dpmotor";
+      default:
+        return "single-ank";
+    }
+  };
+
+  const fetchUsers = async () => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/users`);
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const result = await response.json();
+      setUsers(result);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+      setUsers([]);
+    }
+  };
 
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`${API_BASE_URL2}/single-ank`);
+      const endpoint = getEndpoint();
+      const response = await fetch(`${API_BASE_URL2}/${endpoint}`);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
       const result = await response.json();
       setAllData(result);
-      filterDataByDate(result, date); // Filter initially by current date
+      filterDataByDateAndUser(result, date, selectedUser);
     } catch (error) {
       console.error("Error fetching data:", error);
       setAllData([]);
@@ -41,24 +80,302 @@ const BidAnalysis = () => {
     }
   };
 
-  const filterDataByDate = (data, selectedDate) => {
-    const filtered = data.filter((item) => item.date === selectedDate);
+  const filterDataByDateAndUser = (data, selectedDate, userFilter) => {
+    let filtered = data.filter((item) => item.date === selectedDate);
+
+    // Additional filtering for user if not "All Users"
+    if (userFilter !== "All Users") {
+      filtered = filtered.filter(
+        (item) => item.addUserDTO?.name === userFilter
+      );
+    }
+
     setFilteredData(filtered);
-    setTotal(filtered.reduce((sum, item) => sum + item.totalBidAmount, 0));
+    setTotal(
+      filtered.reduce(
+        (sum, item) => sum + (item.totalBidAmount || item.points || 0),
+        0
+      )
+    );
   };
 
   useEffect(() => {
+    fetchUsers();
     fetchData();
-  }, []);
+  }, []); // Initial fetch
+
+  useEffect(() => {
+    fetchData();
+  }, [game]); // Refetch when game changes
 
   useEffect(() => {
     if (allData.length > 0) {
-      filterDataByDate(allData, date);
+      filterDataByDateAndUser(allData, date, selectedUser);
     }
-  }, [date, allData]);
+  }, [date, allData, selectedUser]);
 
   const handleSearch = () => {
-    filterDataByDate(allData, date);
+    filterDataByDateAndUser(allData, date, selectedUser);
+  };
+
+  const renderTableHeaders = () => {
+    if (game === "Jodi") {
+      return (
+        <thead>
+          <tr>
+            <th>Username</th>
+            {Array.from({ length: 10 }, (_, i) => (
+              <th key={`header-${i}`}>{i}</th>
+            ))}
+            <th>Type</th>
+            <th>Date</th>
+            <th>Total Bids</th>
+            <th>Total Amount</th>
+          </tr>
+        </thead>
+      );
+    } else if (game === "Single Patti" || game === "Double Patti") {
+      return (
+        <thead>
+          <tr>
+            <th>Username</th>
+            {Array.from({ length: 10 }, (_, i) => (
+              <th key={`header-${i}`}>Digit {i}</th>
+            ))}
+            <th>Type</th>
+            <th>Date</th>
+            <th>Total Bids</th>
+            <th>Total Amount</th>
+          </tr>
+        </thead>
+      );
+    } else if (game === "Sangam") {
+      return (
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Open Panna</th>
+            <th>Close Digit</th>
+            <th>Points</th>
+            <th>Type</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+      );
+    } else if (game === "SP DP TP") {
+      return (
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Digit</th>
+            <th>Points</th>
+            <th>Game Type</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+      );
+    } else if (game === "SP Motor" || game === "DP Motor") {
+      return (
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Market</th>
+            <th>Digit</th>
+            <th>Points</th>
+            <th>Session</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+      );
+    } else {
+      return (
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>0</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+            <th>7</th>
+            <th>8</th>
+            <th>9</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Total Bids</th>
+            <th>Total Amount</th>
+          </tr>
+        </thead>
+      );
+    }
+  };
+
+  const renderTableBody = () => {
+    if (game === "Jodi") {
+      return (
+        <tbody>
+          {filteredData.map((item) => {
+            const digitValues = item.digitValues || {};
+            return (
+              <tr key={item.id}>
+                <td>{item.addUserDTO?.name || "N/A"}</td>
+                {Array.from({ length: 10 }, (_, i) => (
+                  <td key={`digit-${i}`}>
+                    {Object.entries(digitValues)
+                      .filter(([key]) => key.startsWith(i.toString()))
+                      .map(([key, value]) => (
+                        <div key={key}>
+                          {key}: {value}
+                        </div>
+                      ))}
+                  </td>
+                ))}
+                <td>{item.type}</td>
+                <td>{item.date}</td>
+                <td>{item.totalBids}</td>
+                <td>{item.totalBidAmount}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      );
+    } else if (game === "Single Patti" || game === "Double Patti") {
+      return (
+        <tbody>
+          {filteredData.map((item) => {
+            const digitValues = item.digitValues || {};
+            return (
+              <tr key={item.id}>
+                <td>{item.addUserDTO?.name || "N/A"}</td>
+                {Array.from({ length: 10 }, (_, i) => (
+                  <td key={`digit-${i}`}>
+                    {digitValues[`single digit ${i}`] &&
+                      Object.entries(digitValues[`single digit ${i}`]).map(
+                        ([key, value]) => (
+                          <div key={key}>
+                            {key}: {value}
+                          </div>
+                        )
+                      )}
+                  </td>
+                ))}
+                <td>{item.type}</td>
+                <td>{item.date}</td>
+                <td>{item.totalBids}</td>
+                <td>{item.totalBidAmount}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      );
+    } else if (game === "Triple Patti") {
+      return (
+        <tbody>
+          {filteredData.map((item) => (
+            <tr key={item.id}>
+              <td>{item.addUserDTO?.name || "N/A"}</td>
+              <td>{item.zero3 || ""}</td>
+              <td>{item.one3 || ""}</td>
+              <td>{item.two3 || ""}</td>
+              <td>{item.three3 || ""}</td>
+              <td>{item.four3 || ""}</td>
+              <td>{item.five3 || ""}</td>
+              <td>{item.six3 || ""}</td>
+              <td>{item.seven3 || ""}</td>
+              <td>{item.eight3 || ""}</td>
+              <td>{item.nine3 || ""}</td>
+              <td>{item.type}</td>
+              <td>{item.date}</td>
+              <td>{item.totalBids}</td>
+              <td>{item.totalBidAmount}</td>
+            </tr>
+          ))}
+        </tbody>
+      );
+    } else if (game === "Sangam") {
+      return (
+        <tbody>
+          {filteredData.map((item) => (
+            <tr key={item.id}>
+              <td>{item.addUserDTO?.name || "N/A"}</td>
+              <td>{item.openPanna || ""}</td>
+              <td>{item.closeDigit || ""}</td>
+              <td>{item.points || ""}</td>
+              <td>{item.type}</td>
+              <td>{item.date}</td>
+            </tr>
+          ))}
+        </tbody>
+      );
+    } else if (game === "SP DP TP") {
+      return (
+        <tbody>
+          {filteredData.map((item) => (
+            <tr key={item.id}>
+              <td>{item.addUserDTO?.name || "N/A"}</td>
+              <td>{item.digit || ""}</td>
+              <td>{item.points || ""}</td>
+              <td>
+                {item.gameType === "1"
+                  ? "Single Patti"
+                  : item.gameType === "2"
+                  ? "Double Patti"
+                  : item.gameType === "3"
+                  ? "Triple Patti"
+                  : ""}
+              </td>
+              <td>{item.date || ""}</td>
+            </tr>
+          ))}
+        </tbody>
+      );
+    } else if (game === "SP Motor" || game === "DP Motor") {
+      return (
+        <tbody>
+          {filteredData.map((item) => (
+            <tr key={item.id}>
+              <td>{item.addUserDTO?.name || "N/A"}</td>
+              <td>
+                {item.mainMarketDTO?.title ||
+                  item.delhiMarketDTO?.title ||
+                  item.starlineMarketDTO?.title ||
+                  "N/A"}
+              </td>
+              <td>{item.digit || ""}</td>
+              <td>{item.points || ""}</td>
+              <td>{item.gameType === "open" ? "Open" : "Close"}</td>
+              <td>{item.date || ""}</td>
+            </tr>
+          ))}
+        </tbody>
+      );
+    } else {
+      return (
+        <tbody>
+          {filteredData.map((item) => (
+            <tr key={item.id}>
+              <td>{item.addUserDTO?.name || "N/A"}</td>
+              <td>{item.zero || ""}</td>
+              <td>{item.one || ""}</td>
+              <td>{item.two || ""}</td>
+              <td>{item.three || ""}</td>
+              <td>{item.four || ""}</td>
+              <td>{item.five || ""}</td>
+              <td>{item.six || ""}</td>
+              <td>{item.seven || ""}</td>
+              <td>{item.eight || ""}</td>
+              <td>{item.nine || ""}</td>
+              <td>{item.type}</td>
+              <td>{item.date}</td>
+              <td>{item.totalBids}</td>
+              <td>{item.totalBidAmount}</td>
+            </tr>
+          ))}
+        </tbody>
+      );
+    }
   };
 
   return (
@@ -82,41 +399,37 @@ const BidAnalysis = () => {
         </div>
 
         <div className="bid-analysis-group">
-          <label className="bid-analysis-label">Market Type</label>
-          <select
-            className="bid-analysis-select"
-            value={marketType}
-            onChange={(e) => setMarketType(e.target.value)}
-          >
-            <option>Main Market</option>
-            <option>Starline</option>
-          </select>
-        </div>
-
-        <div className="bid-analysis-group">
           <label className="bid-analysis-label">Game *</label>
           <select
             className="bid-analysis-select"
             value={game}
             onChange={(e) => setGame(e.target.value)}
           >
-            <option>Choose Game</option>
-            <option>Single Digit</option>
+            <option>Single Ank</option>
             <option>Jodi</option>
-            <option>Patti</option>
+            <option>Single Patti</option>
+            <option>Double Patti</option>
+            <option>Triple Patti</option>
+            <option>Sangam</option>
+            <option>SP DP TP</option>
+            <option>SP Motor</option>
+            <option>DP Motor</option>
           </select>
         </div>
 
         <div className="bid-analysis-group">
-          <label className="bid-analysis-label">Session</label>
+          <label className="bid-analysis-label">User</label>
           <select
             className="bid-analysis-select"
-            value={session}
-            onChange={(e) => setSession(e.target.value)}
+            value={selectedUser}
+            onChange={(e) => setSelectedUser(e.target.value)}
           >
-            <option>Choose Session</option>
-            <option>Open</option>
-            <option>Close</option>
+            <option>All Users</option>
+            {users.map((user) => (
+              <option key={user.id} value={user.name}>
+                {user.name}
+              </option>
+            ))}
           </select>
         </div>
 
@@ -132,51 +445,14 @@ const BidAnalysis = () => {
       ) : filteredData.length > 0 ? (
         <div className="bid-analysis-table-container">
           <table className="bid-analysis-table">
-            <thead>
-              <tr>
-                <th>Username</th>
-                <th>0</th>
-                <th>1</th>
-                <th>2</th>
-                <th>3</th>
-                <th>4</th>
-                <th>5</th>
-                <th>6</th>
-                <th>7</th>
-                <th>8</th>
-                <th>9</th>
-                <th>Type</th>
-                <th>Date</th>
-                <th>Total Bids</th>
-                <th>Total Amount</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredData.map((item) => (
-                <tr key={item.id}>
-                  <td>{item.addUserDTO?.name || "N/A"}</td>
-                  <td>{item.zero || ""}</td>
-                  <td>{item.one || ""}</td>
-                  <td>{item.two || ""}</td>
-                  <td>{item.three || ""}</td>
-                  <td>{item.four || ""}</td>
-                  <td>{item.five || ""}</td>
-                  <td>{item.six || ""}</td>
-                  <td>{item.seven || ""}</td>
-                  <td>{item.eight || ""}</td>
-                  <td>{item.nine || ""}</td>
-                  <td>{item.type}</td>
-                  <td>{item.date}</td>
-                  <td>{item.totalBids}</td>
-                  <td>{item.totalBidAmount}</td>
-                </tr>
-              ))}
-            </tbody>
+            {renderTableHeaders()}
+            {renderTableBody()}
           </table>
         </div>
       ) : (
         <div className="bid-analysis-no-data">
-          No data available for selected date
+          No data available for selected{" "}
+          {selectedUser !== "All Users" ? "user and " : ""}date
         </div>
       )}
     </div>

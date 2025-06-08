@@ -14,7 +14,7 @@ const MainMarketUploadChart = () => {
 
   return (
     <div className="main-market-data-container">
-      <div className="main-market-data-header">Upload Main Market Data</div>
+      <div className="main-market-data-header">Upload Main Bazar Data</div>
 
       <div className="main-market-data-body">
         <div className="main-market-data-group">

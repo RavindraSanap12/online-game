@@ -63,7 +63,7 @@ import SinglePatti from "../components/SinglePatti/SinglePatti";
 import SingleAnk from "../components/SingleAnk/SingleAnk";
 import JodiGame from "../components/JodiGame/JodiGame";
 import KingJackpot from "../components/KingJackpot/KingJackpot";
-import HalfSangam from "../components/HalfSangam/HalfSangam";
+// import HalfSangam from "../components/HalfSangam/HalfSangam";
 import FullSangam from "../components/FullSangam/FullSangam";
 import DoublePatti from "../components/doublePatti/DoublePatti";
 import Spdptp from "../components/SpDpTp/SpDpTp";
@@ -223,7 +223,7 @@ function Layout() {
         <Route path="/game/singleank" element={<SingleAnk />} />
         <Route path="/game/jodi" element={<JodiGame />} />
         <Route path="/kingjackpot" element={<KingJackpot />} />
-        <Route path="/game/halfsangam" element={<HalfSangam />} />
+        {/* <Route path="/game/halfsangam" element={<HalfSangam />} /> */}
         <Route path="/game/fullsangam" element={<FullSangam />} />
         <Route path="/game/DoublePatti" element={<DoublePatti />} />
         <Route path="/game/spdptp" element={<Spdptp />} />

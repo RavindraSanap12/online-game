@@ -157,7 +157,7 @@ const Dashboard = () => {
         >
           <div className="grid-item green">
             <div className="icon market-result-icon"></div>
-            <div className="text">Declare Main Market Result</div>
+            <div className="text">Declare Main Bazar Result</div>
           </div>
         </NavLink>
 
