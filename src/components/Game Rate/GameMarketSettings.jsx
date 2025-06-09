@@ -214,7 +214,6 @@ const GameMarketSettings = () => {
       });
 
       if (!response.ok) {
-        // If API fails, use default data
         setMarkets(defaultMarkets);
         setLoading(false);
         return;
