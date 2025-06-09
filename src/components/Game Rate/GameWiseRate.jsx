@@ -2,13 +2,15 @@ import React from "react";
 import "./GameWiseRate.css";
 
 const gameTypes = [
-  { name: "Single Digits", rate: 10 },
-  { name: "Jodi Digit", rate: 500 },
-  { name: "Single Panna", rate: 160 },
-  { name: "Double Panna", rate: 320 },
+  { name: "Single Digits", rate: 9 },
+  { name: "Jodi Digit", rate: 45 },
+  { name: "Single Panna", rate: 150 },
+  { name: "Double Panna", rate: 300 },
   { name: "Triple Panna", rate: 900 },
-  { name: "Half Sangam", rate: 6000 },
-  { name: "Full Sangam", rate: 60000 },
+  { name: "CP", rate: 300 },
+  { name: "Sangam", rate: 20000 },
+  { name: "SP Motor", rate: 250 },
+  { name: "DP Motor", rate: 300 },
 ];
 
 const markets = ["Lucky Draw", "Time bazar", "Star klyan", "Sridevi",];
